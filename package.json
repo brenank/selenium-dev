@@ -1,0 +1,25 @@
+{
+  "name": "selenium-dev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.ts",
+  "dependencies": {
+    "chromedriver": "101.0.0",
+    "selenium-webdriver": "3.5.0",
+    "@types/selenium-webdriver": "^4.1.1"
+  },
+  "scripts": {
+    "start": "node app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brenank/Selenium-Dev.git"
+  },
+  "author": "Brenan Kelley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brenank/Selenium-Dev/issues"
+  },
+  "homepage": "https://github.com/brenank/Selenium-Dev#readme"
+}
