@@ -1,11 +1,12 @@
 require('chromedriver');
-const $driver = require('selenium-webdriver');
+const webdriver = import('selenium-webdriver');
 
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 (async function main() {
+    const $driver = await webdriver
     const $browser = new $driver.Builder().forBrowser('chrome').build();
     try {
         //Test Logic Here
@@ -15,7 +16,7 @@ function delay(ms) {
         await $browser.wait($driver.until.titleIs('hello world - Google Search'), 1000);
 
 
-        await delay(50000);
+        await delay(5000);
     } finally {
         await $browser.quit();
     }

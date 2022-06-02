@@ -2,7 +2,7 @@
   "name": "selenium-dev",
   "version": "1.0.0",
   "description": "",
-  "main": "app.ts",
+  "main": "app.js",
   "dependencies": {
     "chromedriver": "101.0.0",
     "selenium-webdriver": "3.5.0",
@@ -10,6 +10,7 @@
   },
   "scripts": {
     "start": "node app.ts",
+    "debug": "node app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
