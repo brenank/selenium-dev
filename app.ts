@@ -11,9 +11,25 @@ function delay(ms) {
     try {
         //Test Logic Here
         await $browser.manage().setTimeouts({implicit: 5000}); // 5 seconds
-        await $browser.get('http://www.google.com/ncr');
-        await $browser.findElement($driver.By.name('q')).sendKeys('hello world', $driver.Key.RETURN);
-        await $browser.wait($driver.until.titleIs('hello world - Google Search'), 1000);
+
+        await $browser.get('https://watch.pokemon.com/en-us/');
+
+        console.log("Search For Privacy Prompt")
+        let results = await $browser.findElements($driver.By.linkText("Accept"));
+        if (results.length != 0) {
+            console.log("  Click Accept")
+            await results[0].click();
+        } else {
+            console.log("  Not Found, Ignoring")
+        }
+
+        console.log("Click Series in Header")
+        await $browser.findElement($driver.By.id("pokemonHeader"))
+            .findElement($driver.By.partialLinkText("Series"))
+            .click();
+
+        console.log("Click Series 1")
+        await $browser.findElement($driver.By.xpath("//a[@href = '#/season?id=pokemon-indigo-league']")).click()
 
 
         await delay(5000);
