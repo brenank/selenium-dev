@@ -10,26 +10,29 @@ function delay(ms) {
     const $browser = new $driver.Builder().forBrowser('chrome').build();
     try {
         //Test Logic Here
-        await $browser.manage().setTimeouts({implicit: 5000}); // 5 seconds
+        $browser.manage().setTimeouts({implicit: 5000})         // 5 seconds
+            .then(function () {
+                $browser.get('https://watch.pokemon.com/en-us/').then(function () {
+                    console.log("Search For Privacy Prompt")
+                    $browser.findElements($driver.By.linkText("Accept")).then(function (results) {
+                        if (results.length != 0) {
+                            console.log("  Click Accept")
+                            results[0].click();
+                        } else {
+                            console.log("  Not Found, Ignoring")
+                        }
 
-        await $browser.get('https://watch.pokemon.com/en-us/');
-
-        console.log("Search For Privacy Prompt")
-        let results = await $browser.findElements($driver.By.linkText("Accept"));
-        if (results.length != 0) {
-            console.log("  Click Accept")
-            await results[0].click();
-        } else {
-            console.log("  Not Found, Ignoring")
-        }
-
-        console.log("Click Series in Header")
-        await $browser.findElement($driver.By.id("pokemonHeader"))
-            .findElement($driver.By.partialLinkText("Series"))
-            .click();
-
-        console.log("Click Series 1")
-        await $browser.findElement($driver.By.xpath("//a[@href = '#/season?id=pokemon-indigo-league']")).click()
+                        console.log("Click Series in Header")
+                        $browser.findElement($driver.By.id("pokemonHeader"))
+                            .findElement($driver.By.partialLinkText("Series"))
+                            .click()
+                            .then(function () {
+                                console.log("Click Series 1")
+                                $browser.findElement($driver.By.xpath("//a[@href = '#/season?id=pokemon-indigo-league']")).click()
+                            });
+                    })
+                })
+            })
 
 
         await delay(5000);
